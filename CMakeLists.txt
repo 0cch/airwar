@@ -28,3 +28,11 @@ add_custom_command(TARGET airwar POST_BUILD
 COMMAND ${CMAKE_COMMAND} -E copy_if_different
     "${CMAKE_SOURCE_DIR}/font.ttf"
     "$<TARGET_FILE_DIR:airwar>/font.ttf")
+
+add_executable(sample1 sample1.cpp)
+target_link_libraries(sample1 PRIVATE sfml-graphics)
+target_compile_features(sample1 PRIVATE cxx_std_17)
+
+add_executable(sample2 sample2.cpp)
+target_link_libraries(sample2 PRIVATE sfml-graphics)
+target_compile_features(sample2 PRIVATE cxx_std_17)
