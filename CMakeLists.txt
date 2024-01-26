@@ -11,5 +11,20 @@ FetchContent_Declare(SFML
 FetchContent_MakeAvailable(SFML)
 
 add_executable(airwar main.cpp)
+
+if(MSVC)
+    target_compile_options(airwar PRIVATE "/utf-8")
+endif()
+
 target_link_libraries(airwar PRIVATE sfml-graphics)
 target_compile_features(airwar PRIVATE cxx_std_17)
+
+add_custom_command(TARGET airwar POST_BUILD
+    COMMAND ${CMAKE_COMMAND} -E copy_if_different
+        "${CMAKE_SOURCE_DIR}/plane.png"
+        "$<TARGET_FILE_DIR:airwar>/plane.png")
+
+add_custom_command(TARGET airwar POST_BUILD
+COMMAND ${CMAKE_COMMAND} -E copy_if_different
+    "${CMAKE_SOURCE_DIR}/font.ttf"
+    "$<TARGET_FILE_DIR:airwar>/font.ttf")
