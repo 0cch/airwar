@@ -54,6 +54,7 @@ class Game {
   sf::Text text_;
   bool is_game_over_;
   sf::Time time_since_last_bullet_;
+  float game_time_;
 
   void ResetGame() {
     player_.setPosition(kWindowWidth / 2.f, kWindowHeight / 2.f);
@@ -61,13 +62,15 @@ class Game {
     game_clock_.restart();
     is_game_over_ = false;
     time_since_last_bullet_ = sf::Time::Zero;
+    game_time_ = 0.f;
   }
 
  public:
   Game()
       : window_(sf::VideoMode(kWindowWidth, kWindowHeight), "Air War"),
         is_game_over_(false),
-        time_since_last_bullet_(sf::Time::Zero) {
+        time_since_last_bullet_(sf::Time::Zero),
+        game_time_(0.f) {
     window_.setFramerateLimit(60);
 
     if (!playerTexture_.loadFromFile("plane.png")) {
@@ -182,7 +185,8 @@ class Game {
 
   void UpdateGameTime() {
     std::ostringstream ss;
-    ss << "Time: " << game_clock_.getElapsedTime().asSeconds() << "s";
+    game_time_ = game_clock_.getElapsedTime().asSeconds();
+    ss << "Time: " << game_time_ << "s";
     text_.setString(ss.str());
     text_.setPosition(10, 10);
   }
@@ -194,6 +198,14 @@ class Game {
       for (const auto& bullet : bullets_) {
         window_.draw(bullet.shape);
       }
+    } else {
+      sf::Text end_text;
+      end_text.setString(game_time_ < 30.f ? L"菜" : L"牛");
+      end_text.setPosition(250, 100);
+      end_text.setFont(font_);
+      end_text.setFillColor(sf::Color::Red);
+      end_text.setCharacterSize(300);
+      window_.draw(end_text);
     }
     window_.draw(text_);
     window_.display();
