@@ -48,7 +48,7 @@ class Bullet {
 int main() {
   srand(static_cast<unsigned int>(time(NULL)));
   sf::RenderWindow window(sf::VideoMode(kWindowWidth, kWindowHeight),
-                          "Plane Dodge Game");
+                          "sample2");
   window.setFramerateLimit(60);
 
   sf::RectangleShape player(sf::Vector2f(50.f, 50.f));

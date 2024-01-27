@@ -157,13 +157,13 @@ class Game {
     std::vector<sf::FloatRect> boxes;
     const sf::FloatRect bounds = sprite.getGlobalBounds();
     boxes.push_back(
-        sf::FloatRect(sprite.getPosition().x - bounds.width / 2 + 228 * scale,
-                      sprite.getPosition().y - bounds.height / 2 + 10 * scale,
+        sf::FloatRect(sprite.getPosition().x - bounds.width / 2 + 216 * scale,
+                      sprite.getPosition().y - bounds.height / 2 + 80 * scale,
                       95 * scale, 305 * scale));
     boxes.push_back(
-        sf::FloatRect(sprite.getPosition().x - bounds.width / 2 + 20 * scale,
+        sf::FloatRect(sprite.getPosition().x - bounds.width / 2 + 60 * scale,
                       sprite.getPosition().y - bounds.height / 2 + 165 * scale,
-                      470 * scale, 50 * scale));
+                      400 * scale, 50 * scale));
 
     return boxes;
   }
