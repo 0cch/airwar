@@ -7,8 +7,8 @@
 const int kWindowWidth = 800;
 const int kWindowHeight = 600;
 const float kPlayerSpeed = 200.f;
-const sf::Time kBulletSpawnTime = sf::milliseconds(100.f);
-const int kMaxBullets = 80;
+const sf::Time kBulletSpawnTime = sf::milliseconds(10.f);
+const int kMaxBullets = 800;
 
 class Bullet {
  public:
