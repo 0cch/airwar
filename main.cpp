@@ -1,4 +1,5 @@
 #include <SFML/Graphics.hpp>
+#include <cmath>
 #include <cstdlib>
 #include <ctime>
 #include <sstream>
