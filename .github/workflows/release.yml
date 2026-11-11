@@ -37,45 +37,10 @@ jobs:
           path: dist/airwar-windows-x64.zip
           if-no-files-found: error
 
-  build-linux:
-    name: Build Linux x64
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v7
-
-      - name: Install dependencies
-        run: |
-          sudo apt-get update
-          sudo apt-get install -y \
-            libx11-dev libxrandr-dev libxcursor-dev libxi-dev \
-            libudev-dev libgl1-mesa-dev libfreetype6-dev
-
-      - name: Configure
-        run: cmake -S . -B build -DCMAKE_BUILD_TYPE=Release
-
-      - name: Build
-        run: cmake --build build --parallel
-
-      - name: Package
-        run: |
-          mkdir -p dist/airwar-linux-x64
-          cp build/bin/airwar dist/airwar-linux-x64/
-          cp plane.png font.ttf image.png README.md LICENSE dist/airwar-linux-x64/
-          tar -C dist -czf dist/airwar-linux-x64.tar.gz airwar-linux-x64
-
-      - name: Upload artifact
-        uses: actions/upload-artifact@v7
-        with:
-          name: airwar-linux-x64
-          path: dist/airwar-linux-x64.tar.gz
-          if-no-files-found: error
-
   publish-release:
     name: Publish GitHub Release
     needs:
       - build-windows
-      - build-linux
     runs-on: ubuntu-latest
     steps:
       - name: Download release assets

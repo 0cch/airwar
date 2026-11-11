@@ -26,10 +26,10 @@
 
 ## 下载
 
-前往 [Releases](https://github.com/0cch/airwar/releases) 下载最新的 Windows 或 Linux 构建。
+前往 [Releases](https://github.com/0cch/airwar/releases) 下载最新的 Windows 构建。
 
 - Windows：解压 `airwar-windows-x64.zip` 后运行 `airwar.exe`
-- Linux：解压 `airwar-linux-x64.tar.gz` 后运行 `airwar`
+- Linux：可按照下方源码构建步骤生成
 
 发布包内已包含运行时需要的 `plane.png` 和 `font.ttf`。
 
@@ -71,15 +71,14 @@ GitHub Actions 工作流位于 `.github/workflows/release.yml`。
 推送符合 `v*` 格式的 tag 时，会自动：
 
 1. 构建 Windows x64 版本
-2. 构建 Linux x64 版本
-3. 打包运行所需资源
-4. 创建或更新对应的 GitHub Release
+2. 打包运行所需资源
+3. 创建或更新对应的 GitHub Release
 
 示例：
 
 ```bash
-git tag v1.0.0
-git push origin v1.0.0
+git tag v1.0.2
+git push origin v1.0.2
 ```
 
 ## 项目结构
