@@ -11,10 +11,10 @@ permissions:
 jobs:
   build-windows:
     name: Build Windows x64
-    runs-on: windows-latest
+    runs-on: windows-2022
     steps:
       - name: Checkout
-        uses: actions/checkout@v4
+        uses: actions/checkout@v7
 
       - name: Configure
         run: cmake -S . -B build -G "Visual Studio 17 2022" -A x64
@@ -31,7 +31,7 @@ jobs:
           Compress-Archive -Path dist/airwar-windows-x64 -DestinationPath dist/airwar-windows-x64.zip
 
       - name: Upload artifact
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v7
         with:
           name: airwar-windows-x64
           path: dist/airwar-windows-x64.zip
@@ -42,7 +42,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
-        uses: actions/checkout@v4
+        uses: actions/checkout@v7
 
       - name: Install dependencies
         run: |
@@ -65,7 +65,7 @@ jobs:
           tar -C dist -czf dist/airwar-linux-x64.tar.gz airwar-linux-x64
 
       - name: Upload artifact
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v7
         with:
           name: airwar-linux-x64
           path: dist/airwar-linux-x64.tar.gz
@@ -79,7 +79,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Download release assets
-        uses: actions/download-artifact@v4
+        uses: actions/download-artifact@v8
         with:
           path: release-assets
           merge-multiple: true
